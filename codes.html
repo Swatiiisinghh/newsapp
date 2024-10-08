@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background: rgb(131, 58, 180);
+      background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+      backdrop-filter: blur(10px) brightness(80%);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .logo {
+      margin: 50px auto;
+      display: block;
+      background-color: rgb(249, 255, 250);
+      cursor: pointer;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .basicinfo {
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cards-container {
+      grid-column: 2 / span 1;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      overflow: hidden;
+      width: 30%;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .card-content h6 {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 992px) {
+      .card {
+        width: 48%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        width: 100%;
+      }
+
+      .content-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+      }
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .nav-links ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .news-input {
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    .search-button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News App</title>
+</head>
+
+<body>
+
+  <nav>
+    <div class="main-nav container flex">
+
+      <div class="nav-links">
+        <ul class="flex">
+          <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
+          <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">Finance</li>
+          <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">Politics</li>
+        </ul>
+      </div>
+      <div class="search-bar flex">
+        <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
+        <button id="search-button" class="search-button">Search</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="logo" id="logo">
+    <img src="newlogo.png" alt="News Pulse Logo">
+  </div>
+
+  <div class="content-wrapper">
+    <div class="basicinfo" id="para1">
+      <p><span><b>Stay Ahead with Breaking News:</b></span> Our news website delivers the latest headlines and updates
+        from around the globe as they happen. Whether it’s politics, technology, or entertainment, you’ll find
+        real-time coverage.</p>
+    </div>
+
+    <div class="cards-container" id="cards-container">
+      <!-- Cards will be injected here -->
+    </div>
+
+    <div class="basicinfo" id="para2">
+      <p><span><b>In-Depth Analysis and Insights:</b></span> Beyond just breaking news, we provide thorough analysis
+        and insightful commentary on the stories that matter. Our expert contributors delve into the nuances behind
+        major events, offering perspectives that help you understand the bigger picture.</p>
+    </div>
+
+    <div class="basicinfo" id="para3">
+      <p><span><b>Personalized News Experience:</b></span> Tailor your news feed to your interests with our
+        customizable options. Whether you’re passionate about international affairs, local news, or specialized topics
+        like science or sports, our platform allows you to curate your content.</p>
+    </div>
+
+    <div class="basicinfo" id="para4">
+      <p><span><b>Interactive and Engaging Community:</b></span> Join a vibrant community of readers and contributors
+        who engage in meaningful discussions and share diverse viewpoints. Our platform encourages interaction through
+        comments, forums, and social media integration.</p>
+    </div>
+  </div>
+
+  <template id="template-news-card">
+    <div class="card">
+      <div class="card-header">
+        <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+      </div>
+      <div class="card-content">
+        <h3 id="news-title">This is the Title</h3>
+        <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+        <p class="news-desc" id="news-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    document.getElementById('logo').addEventListener('click', function () {
+      document.querySelectorAll('.basicinfo').forEach(function (el) {
+        el.classList.toggle('visible');
+      });
+    });
+
+    const API_KEY = "fdb523ae3aef4453ae4cb4ee16d48713";
+    const url = "https://newsapi.org/v2/everything?q=";
+
+    window.addEventListener("load", () => fetchNews("India"));
+
+    async function fetchNews(query) {
+      const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+      const data = await res.json();
+      bindData(data.articles);
+    }
+
+    function bindData(articles) {
+      const cardsContainer = document.getElementById("cards-container");
+      const newsCardTemplate = document.getElementById("template-news-card");
+
+      cardsContainer.innerHTML = "";
+
+      articles.forEach((article) => {
+        if (!article.urlToImage) return;
+        const cardClone = newsCardTemplate.content.cloneNode(true);
+        fillDataInCard(cardClone, article);
+        cardsContainer.appendChild(cardClone);
+      });
+    }
+
+    function fillDataInCard(cardClone, article) {
+      const newsImg = cardClone.querySelector("#news-img");
+      const newsTitle = cardClone.querySelector("#news-title");
+      const newsSource = cardClone.querySelector("#news-source");
+      const newsDesc = cardClone.querySelector("#news-desc");
+
+      newsImg.src = article.urlToImage;
+      newsTitle.innerHTML = article.title;
+      newsDesc.innerHTML = article.description;
+
+      const date = new Date(article.publishedAt).toLocaleString("en-US", {
+        timeZone: "Asia/Jakarta",
+      });
+
+      newsSource.innerHTML = `${article.source.name} · ${date}`;
+
+      cardClone.firstElementChild.addEventListener("click", () => {
+        window.open(article.url, "_blank");
+      });
+    }
+
+    let curSelectedNav = null;
+    function onNavItemClick(id) {
+      fetchNews(id);
+      const navItem = document.getElementById(id);
+      curSelectedNav?.classList.remove("active");
+      curSelectedNav = navItem;
+      curSelectedNav.classList.add("active");
+    }
+
+    const searchButton = document.getElementById("search-button");
+    const searchText = document.getElementById("search-text");
+
+    searchButton.addEventListener("click", () => {
+      const query = searchText.value;
+      if (!query) return;
+      fetchNews(query);
+      curSelectedNav?.classList.remove("active");
+      curSelectedNav = null;
+    });
+
+
+    document.getElementById('logo').addEventListener('click', function () {
+      document.querySelectorAll('.basicinfo').forEach(function (el) {
+        el.classList.toggle('visible');
+      });
+    });
+
+  </script>
+</body>
+
+</html>
