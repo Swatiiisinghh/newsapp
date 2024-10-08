@@ -9,38 +9,64 @@
       backdrop-filter: blur(10px) brightness(80%);
       margin: 0;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .logo {
-      margin-top: 50px;
+      display: block;
       background-color: rgb(249, 255, 250);
       cursor: pointer;
       max-width: 100%;
       height: auto;
+      margin: 50px auto;
     }
 
     .content-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 3fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       max-width: 1200px;
-      margin-top: 50px;
+      margin: 0 auto;
+    }
+
+    .text-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
     }
 
     .basicinfo {
       background-color: #ffffff;
       border-radius: 20px;
-      padding: 20px;
+      padding: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 5px;
+      flex: 1;
+
+      width: 80%;
+
+      color: #000;
+
+      overflow: hidden;
+      margin: 10px;
+
+
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
 
+    .basicinfo.visible {
+      opacity: 1;
+    }
+
+
+
+
+
+
     .cards-container {
-      grid-column: 2 / span 1;
+      flex: 3;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -98,9 +124,61 @@
       }
 
       .content-wrapper {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto;
+        flex-direction: column;
       }
+
+      .text-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+      }
+
+      .basicinfo {
+        width: 48%;
+      }
+    }
+
+    nav {
+      background-color: #333;
+      opacity: 0.5;
+      padding: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .nav-links ul {
+      display: flex;
+      list-style: none;
+
+
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+      color: white;
+      cursor: pointer;
+      font-size: 25px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+    }
+
+    .news-input {
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    .search-button {
+
+
+      font-size: 25px;
+      cursor: pointer;
     }
   </style>
   <meta charset="UTF-8">
@@ -111,38 +189,61 @@
 
 <body>
 
-  <div class="logo" id="logo">
-    <img src="newlogo.png" alt="News Pulse Logo">
-  </div>
+  <nav>
+    <div class="main-nav container flex">
+
+      <div class="nav-links">
+        <ul class="flex">
+          <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('fashion')">
+            &#128085<br>Fashion
+          </li>
+          <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('Sports')">&#129351<br>Sports</li>
+          <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('science')">&#127757<br>Science</li>
+        </ul>
+      </div>
+      <div class="search-bar flex">
+        <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
+        <button id="search-button" class="search-button">Search</button>
+      </div>
+    </div>
+  </nav>
 
   <div class="content-wrapper">
-    <div class="basicinfo" id="para1">
-      <p><span><b>Stay Ahead with Breaking News:</b></span> Our news website delivers the latest headlines and updates
-        from around the globe as they happen. Whether it’s politics, technology, or entertainment, you’ll find
-        real-time coverage.</p>
+    <div class="text-column">
+      <div class="basicinfo" id="para1">
+        <p><span><b>Stay Ahead with Breaking News:</b></span> Our news website delivers the latest headlines and updates
+          from around the globe as they happen. Whether it’s politics, technology, or entertainment, you’ll find
+          real-time coverage.</p>
+      </div>
+
+      <div class="basicinfo" id="para2">
+        <p><span><b>In-Depth Analysis and Insights:</b></span> Beyond just breaking news, we provide thorough analysis
+          and insightful commentary on the stories that matter. Our expert contributors delve into the nuances behind
+          major events, offering perspectives that help you understand the bigger picture.</p>
+      </div>
     </div>
 
-    <div class="cards-container" id="cards-container">
-      <!-- Cards will be injected here -->
+    <div>
+      <img src="newlogo.png" alt="News Pulse Logo" class="logo" id="logo">
     </div>
 
-    <div class="basicinfo" id="para2">
-      <p><span><b>In-Depth Analysis and Insights:</b></span> Beyond just breaking news, we provide thorough analysis
-        and insightful commentary on the stories that matter. Our expert contributors delve into the nuances behind
-        major events, offering perspectives that help you understand the bigger picture.</p>
-    </div>
+    <div class="text-column">
+      <div class="basicinfo" id="para3">
+        <p><span><b>Personalized News Experience:</b></span> Tailor your news feed to your interests with our
+          customizable options. Whether you’re passionate about international affairs, local news, or specialized topics
+          like science or sports, our platform allows you to curate your content.</p>
+      </div>
 
-    <div class="basicinfo" id="para3">
-      <p><span><b>Personalized News Experience:</b></span> Tailor your news feed to your interests with our
-        customizable options. Whether you’re passionate about international affairs, local news, or specialized topics
-        like science or sports, our platform allows you to curate your content.</p>
+      <div class="basicinfo" id="para4">
+        <p><span><b>Interactive and Engaging Community:</b></span> Join a vibrant community of readers and contributors
+          who engage in meaningful discussions and share diverse viewpoints. Our platform encourages interaction through
+          comments, forums, and social media integration.</p>
+      </div>
     </div>
+  </div>
 
-    <div class="basicinfo" id="para4">
-      <p><span><b>Interactive and Engaging Community:</b></span> Join a vibrant community of readers and contributors
-        who engage in meaningful discussions and share diverse viewpoints. Our platform encourages interaction through
-        comments, forums, and social media integration.</p>
-    </div>
+  <div class="cards-container" id="cards-container">
+    <!-- Cards will be injected here -->
   </div>
 
   <template id="template-news-card">
